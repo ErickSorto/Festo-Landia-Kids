@@ -3,6 +3,8 @@ package onboarding.presentation
 import LocalAppColors
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -10,6 +12,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MaterialTheme.typography
 import androidx.compose.material3.Scaffold
@@ -85,7 +89,7 @@ fun OnboardingScreen() {
                     fontFamily = FontFamily(Font(Res.font.vag_rundschrift_d))
                 )
                 Text(
-                    "LANDIA",
+                    "LÂNDIA",
                     style = typography.displayLarge.copy(
                         shadow = Shadow(
                             color = Color.Black.copy(
@@ -120,6 +124,34 @@ fun OnboardingScreen() {
                 )
             }
 
+            Spacer(modifier = Modifier.weight(1f))
+            Button(
+                onClick = {
+
+                },
+                modifier = Modifier.padding(16.dp).border(
+                    width = 2.dp,
+                    color = colors.lightYellow,
+                    shape = MaterialTheme.shapes.medium
+                ),
+                shape = MaterialTheme.shapes.medium,
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = colors.lightMagenta,
+                    contentColor = Color.White,
+                ),
+                elevation = ButtonDefaults.buttonElevation(
+                    defaultElevation = 5.dp,
+                    pressedElevation = 10.dp
+                )
+
+            ) {
+                Text(
+                    text = "Continue",
+                    style = typography.displaySmall,
+                    color = Color.White,
+                    fontFamily = FontFamily(Font(Res.font.vag_rundschrift_d))
+                )
+            }
             Spacer(modifier = Modifier.weight(1f))
         }
     }
