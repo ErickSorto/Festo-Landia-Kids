@@ -1,4 +1,3 @@
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import onboarding.presentation.OnboardingScreen
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -6,7 +5,9 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 @Composable
 @Preview
 fun App() {
-    MaterialTheme {
+    FestoLandiaKidsTheme(
+        darkTheme = false
+    ) {
         OnboardingScreen()
     }
 }
