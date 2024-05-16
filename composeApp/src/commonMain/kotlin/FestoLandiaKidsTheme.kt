@@ -22,21 +22,26 @@ private val LightColorScheme = lightColorScheme(
 
 object CustomColors {
     val Yellow = Color(0xFFFFD700)
-    val LightYellow = Color(0xFFFFFFE0)
+    val LightYellow = Color(0xFFFFCC00)
     val DarkYellow = Color(0xFFB8860B)
-    // Add more custom colors as needed
+    val LightSkyBlue = Color(0xFF87CEEB)
+    val LightMagenta = Color(0xFFFF66FF)
 }
 data class AppColors(
-    val primary: Color,
-    val secondary: Color,
-    val tertiary: Color,
+    val yellow: Color,
+    val lightYellow: Color,
+    val darkYellow: Color,
+    val lightSkyBlue: Color,
+    val lightMagenta: Color
 )
 
 val LocalAppColors = staticCompositionLocalOf {
     AppColors(
-        primary = CustomColors.Yellow,
-        secondary = CustomColors.LightYellow,
-        tertiary = CustomColors.DarkYellow
+        yellow = CustomColors.Yellow,
+        lightYellow = CustomColors.LightYellow,
+        darkYellow = CustomColors.DarkYellow,
+        lightSkyBlue = CustomColors.LightSkyBlue,
+        lightMagenta = CustomColors.LightMagenta
     )
 }
 

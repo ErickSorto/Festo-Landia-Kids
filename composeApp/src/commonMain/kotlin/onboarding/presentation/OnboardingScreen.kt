@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.MaterialTheme
@@ -17,14 +18,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.blur
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import festolandiakids.composeapp.generated.resources.Res
+import festolandiakids.composeapp.generated.resources.app_name
 import festolandiakids.composeapp.generated.resources.festolandiakids_background
+import festolandiakids.composeapp.generated.resources.vag_rundschrift_d
 import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -50,15 +57,69 @@ fun OnboardingScreen() {
 
     Scaffold(
         containerColor = Color.Transparent
-    ){
+    ) {
         Column(
             modifier = Modifier.fillMaxSize().padding(it),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(modifier = Modifier.weight(1f))
-            Text("Festo", style = typography.displayLarge, color = colors.tertiary, fontSize = 100.sp, fontWeight = FontWeight.Bold)
-            Text("Landia", style = typography.displayLarge, color = Color.Blue, fontSize = 100.sp, fontWeight = FontWeight.Bold)
-            Text("Kids", style = typography.displayLarge, color = Color.Magenta, fontSize = 100.sp, fontWeight = FontWeight.Bold)
+            Column(){
+                val offset = Offset(5.0f, 5.0f)
+                Text(
+                    "FESTO",
+                    style = typography.displayLarge.copy(
+                        shadow = Shadow(
+                            color = Color.Black.copy(
+                                alpha = 0.5f
+                            ), offset = offset, blurRadius = 6f
+                        )
+                    ),
+                    color = colors.yellow,
+                    fontSize = 100.sp,
+                    fontWeight = FontWeight.Bold,
+                    lineHeight = 80.sp,
+                    modifier = Modifier.offset(
+                        x = 0.dp,
+                        y = 20.dp
+                    ),
+                    fontFamily = FontFamily(Font(Res.font.vag_rundschrift_d))
+                )
+                Text(
+                    "LANDIA",
+                    style = typography.displayLarge.copy(
+                        shadow = Shadow(
+                            color = Color.Black.copy(
+                                alpha = 0.5f
+                            ), offset = offset, blurRadius = 6f
+                        )
+                    ),
+                    color = colors.lightSkyBlue,
+                    fontSize = 100.sp,
+                    fontWeight = FontWeight.Bold,
+                    lineHeight = 80.sp,
+                    fontFamily = FontFamily(Font(Res.font.vag_rundschrift_d))
+                )
+                Text(
+                    "KIDS",
+                    style = typography.displayLarge.copy(
+                        shadow = Shadow(
+                            color = Color.Black.copy(
+                                alpha = 0.5f
+                            ), offset = offset, blurRadius = 6f
+                        )
+                    ),
+                    color = colors.lightMagenta,
+                    fontSize = 100.sp,
+                    fontWeight = FontWeight.Bold,
+                    lineHeight = 80.sp,
+                    modifier = Modifier.offset(
+                        x = 0.dp,
+                        y = (-10).dp
+                    ),
+                    fontFamily = FontFamily(Font(Res.font.vag_rundschrift_d))
+                )
+            }
+
             Spacer(modifier = Modifier.weight(1f))
         }
     }
