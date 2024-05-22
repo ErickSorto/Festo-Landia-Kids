@@ -10,7 +10,6 @@ import onboarding.presentation.OnboardingViewModel
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.KoinContext
 import org.koin.compose.currentKoinScope
-import org.koin.core.context.KoinContext
 
 @Composable
 @Preview

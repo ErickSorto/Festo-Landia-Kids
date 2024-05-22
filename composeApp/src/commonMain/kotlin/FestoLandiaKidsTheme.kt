@@ -12,8 +12,6 @@ private val DarkColorScheme = darkColorScheme(
     tertiary = Color(0xFFFFD700)
 )
 
-
-
 private val LightColorScheme = lightColorScheme(
     primary = Color(0xFFFFD700),
     secondary = Color(0xFFFFD700),
@@ -49,7 +47,6 @@ val LocalAppColors = staticCompositionLocalOf {
 @Composable
 fun FestoLandiaKidsTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {
     val colorScheme = if (darkTheme) DarkColorScheme else LightColorScheme

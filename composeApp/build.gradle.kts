@@ -43,6 +43,8 @@ kotlin {
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
+           // implementation(libs.lottie.compose)
+            implementation(libs.compottie)
 
             implementation(libs.sqldelight.runtime)
             implementation(libs.sqldelight.coroutines.extensions)
@@ -51,6 +53,7 @@ kotlin {
             implementation(libs.koin.compose)
             implementation(libs.lifecycle.viewmodel)
             implementation(libs.navigation.compose)
+
         }
     }
 }
