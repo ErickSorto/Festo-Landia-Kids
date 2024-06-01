@@ -3,7 +3,6 @@ package onboarding.presentation
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import onboarding.domain.OnboardingEvent
 
 class OnboardingViewModel(
     private val title: String,

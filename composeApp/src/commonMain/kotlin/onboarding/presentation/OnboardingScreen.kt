@@ -32,8 +32,8 @@ import festolandiakids.composeapp.generated.resources.vag_rundschrift_d
 import io.github.alexzhirkevich.compottie.LottieAnimation
 import io.github.alexzhirkevich.compottie.LottieCompositionSpec
 import io.github.alexzhirkevich.compottie.LottieConstants
+import io.github.alexzhirkevich.compottie.animateLottieCompositionAsState
 import io.github.alexzhirkevich.compottie.rememberLottieComposition
-import onboarding.domain.OnboardingEvent
 import onboarding.presentation.components.FestoLandiaKidsLogo
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.Font
