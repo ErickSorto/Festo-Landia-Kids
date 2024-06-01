@@ -1,4 +1,4 @@
-package onboarding.presentation
+package onboarding.domain
 
 
 sealed class OnboardingEvent {

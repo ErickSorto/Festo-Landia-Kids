@@ -7,12 +7,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.absoluteOffset
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.offset
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
@@ -26,6 +24,7 @@ import festolandiakids.composeapp.generated.resources.vag_rundschrift_d
 import onboarding.presentation.LottieAnimationView
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.Font
+
 @OptIn(ExperimentalResourceApi::class)
 @Composable
 fun FestoLandiaKidsLogo() {
@@ -35,11 +34,11 @@ fun FestoLandiaKidsLogo() {
     Box {
         Column {
             Text(
-                "FESTO",
+                "FEST",
                 style = MaterialTheme.typography.displayLarge.copy(
                     shadow = Shadow(
                         color = Color.Black.copy(
-                            alpha = 0.4f
+                            alpha = 0.3f
                         ), offset = offset, blurRadius = 8f
                     )
                 ),
@@ -48,14 +47,15 @@ fun FestoLandiaKidsLogo() {
                 fontWeight = FontWeight.Bold,
                 lineHeight = 80.sp,
                 fontFamily = FontFamily(Font(Res.font.vag_rundschrift_d)),
-                modifier = Modifier.offset(y = (10).dp)
+                modifier = Modifier.offset(y = (10).dp),
+                letterSpacing = 0.5.sp
             )
             Text(
                 "LANDIA",
                 style = MaterialTheme.typography.displayLarge.copy(
                     shadow = Shadow(
                         color = Color.Black.copy(
-                            alpha = 0.4f
+                            alpha = 0.3f
                         ), offset = offset, blurRadius = 8f
                     )
                 ),
@@ -63,13 +63,14 @@ fun FestoLandiaKidsLogo() {
                 fontSize = 105.sp,
                 fontWeight = FontWeight.Bold,
                 fontFamily = FontFamily(Font(Res.font.vag_rundschrift_d)),
+                letterSpacing = 0.5.sp
             )
             Text(
                 "KIDS",
                 style = MaterialTheme.typography.displayLarge.copy(
                     shadow = Shadow(
                         color = Color.Black.copy(
-                            alpha = 0.4f
+                            alpha = 0.3f
                         ), offset = offset, blurRadius = 8f
                     )
                 ),
@@ -77,13 +78,14 @@ fun FestoLandiaKidsLogo() {
                 fontSize = 105.sp,
                 fontWeight = FontWeight.Bold,
                 fontFamily = FontFamily(Font(Res.font.vag_rundschrift_d)),
-                modifier = Modifier.offset(y = (-10).dp)
+                modifier = Modifier.offset(y = (-10).dp),
+                letterSpacing = 0.5.sp
             )
         }
         Box(
             modifier = Modifier
-                .absoluteOffset(x = 115.dp, y = -37.dp) // Adjust the offset to position the animation over the "O"
-                .size(250.dp) // Adjust the size as needed
+                .absoluteOffset(x = 123.dp, y = -40.dp) // Adjust the offset to position the animation over the "O"
+                .size(255.dp) // Adjust the size as needed
         ) {
             LottieAnimationView(modifier = Modifier.fillMaxSize())
         }

@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
@@ -31,8 +32,8 @@ import festolandiakids.composeapp.generated.resources.vag_rundschrift_d
 import io.github.alexzhirkevich.compottie.LottieAnimation
 import io.github.alexzhirkevich.compottie.LottieCompositionSpec
 import io.github.alexzhirkevich.compottie.LottieConstants
-import io.github.alexzhirkevich.compottie.animateLottieCompositionAsState
 import io.github.alexzhirkevich.compottie.rememberLottieComposition
+import onboarding.domain.OnboardingEvent
 import onboarding.presentation.components.FestoLandiaKidsLogo
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.Font
@@ -43,7 +44,8 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun OnboardingScreen(
     onboardingViewModelState: OnboardingViewModelState,
-    onEvent: (OnboardingEvent) -> Unit
+    onEvent: (OnboardingEvent) -> Unit,
+    onNavigateToMainScreen: () -> Unit
 ) {
 
     val colors = LocalAppColors.current
@@ -67,21 +69,18 @@ fun OnboardingScreen(
             modifier = Modifier.fillMaxSize().padding(it),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(
-                text = "Welcome to FestoLandia Kids",
-            )
-            Text(
-                text = onboardingViewModelState.title + onboardingViewModelState.description,
-                style = typography.displaySmall,
-            )
+
+            Spacer(modifier = Modifier.weight(1f))
+
+            Spacer(modifier = Modifier.height(80.dp))
 
             Spacer(modifier = Modifier.weight(1f))
 
             FestoLandiaKidsLogo()
-
+            Spacer(modifier = Modifier.weight(1f))
             Button(
                 onClick = {
-                    onEvent(OnboardingEvent.ButtonClicked)
+                    onNavigateToMainScreen()
                 },
                 modifier = Modifier.padding(16.dp).border(
                     width = 2.dp,

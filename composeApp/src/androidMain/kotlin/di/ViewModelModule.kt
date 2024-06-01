@@ -1,5 +1,6 @@
 package di
 
+import mainScreen.MainScreenViewModel
 import onboarding.presentation.OnboardingViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.androidx.viewmodel.dsl.viewModelOf
@@ -8,4 +9,5 @@ import org.koin.dsl.module
 
 actual val viewModelModule = module {
    viewModel { OnboardingViewModel(get(named("title")), get(named("subtitle"))) }
+   viewModel { MainScreenViewModel() }
 }

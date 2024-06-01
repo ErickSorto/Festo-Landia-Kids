@@ -5,6 +5,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import navigation.MainGraph
 import onboarding.presentation.OnboardingScreen
 import onboarding.presentation.OnboardingViewModel
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -20,25 +21,11 @@ fun App() {
         ) {
             val navController = rememberNavController()
 
-            NavHost(navController = navController, startDestination = "onboarding"){
-                composable("onboarding"){
-                    val onboardingViewModel = koinViewModel<OnboardingViewModel>()
-                    val onboardingViewModelState = onboardingViewModel.onBoardingViewModelState.collectAsState()
-                    OnboardingScreen(
-                        onboardingViewModelState = onboardingViewModelState.value
-                    ) {
-                        onboardingViewModel.onEvent(it)
-                    }
-                }
-            }
+            MainGraph(
+                navController = navController,
+                onDataLoaded = {}
+            )
         }
     }
 }
 
-@Composable
-inline fun <reified T: ViewModel> koinViewModel (): T {
-    val scope = currentKoinScope()
-    return viewModel {
-        scope.get<T>()
-    }
-}
