@@ -21,11 +21,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import festolandiakids.composeapp.generated.resources.Res
 import festolandiakids.composeapp.generated.resources.vag_rundschrift_d
-import onboarding.presentation.LottieAnimationView
+import onboarding.presentation.KottieAnimationView
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.Font
 
-@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun FestoLandiaKidsLogo() {
     val colors = LocalAppColors.current
@@ -87,7 +86,7 @@ fun FestoLandiaKidsLogo() {
                 .absoluteOffset(x = 123.dp, y = -40.dp) // Adjust the offset to position the animation over the "O"
                 .size(255.dp) // Adjust the size as needed
         ) {
-            LottieAnimationView(modifier = Modifier.fillMaxSize())
+            KottieAnimationView(modifier = Modifier.fillMaxSize())
         }
     }
 }

@@ -58,7 +58,7 @@ kotlin {
             implementation(libs.navigation.compose)
             implementation(libs.ktor.client.core)
             implementation(libs.kotlinx.coroutines.core)
-            implementation("io.github.ismai117:kottie:1.8.6")
+            implementation(libs.kottie)
         }
 
         iosMain.dependencies {
