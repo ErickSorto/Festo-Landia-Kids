@@ -1,10 +1,7 @@
-import androidx.compose.foundation.Image
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
-import festolandiakids.composeapp.generated.resources.FestoLandiaKidsSunLogo
-import festolandiakids.composeapp.generated.resources.Res
-import org.jetbrains.compose.resources.painterResource
+import androidx.compose.ui.interop.UIKitView
+import kotlinx.cinterop.ExperimentalForeignApi
 
 @Composable
 actual fun setTranslucentBars(darkTheme: Boolean) {
@@ -12,13 +9,21 @@ actual fun setTranslucentBars(darkTheme: Boolean) {
 }
 
 
+@OptIn(ExperimentalForeignApi::class)
 @Composable
 actual fun SunAnimationView(modifier: Modifier) {
-    Image(
-        painter = painterResource(
-            Res.drawable.FestoLandiaKidsSunLogo),
-        contentDescription = null,
+    UIKitView(
         modifier = modifier,
-        contentScale = ContentScale.Fit
+        factory = {
+            UIImageView().apply {
+                image = UIImage.imageNamed("FestoLandiaKidsSunLogo") // Replace with your actual PNG resource name
+                backgroundColor = UIColor.clearColor
+                opaque = false
+                contentMode = UIViewContentMode.ScaleAspectFit
+            }
+        },
+        update = {
+            it.setImage(UIImage.imageNamed("FestoLandiaKidsSunLogo"))
+        }
     )
 }
