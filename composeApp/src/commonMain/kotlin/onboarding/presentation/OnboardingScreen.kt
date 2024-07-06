@@ -18,7 +18,6 @@ import androidx.compose.material3.MaterialTheme.typography
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -34,9 +33,6 @@ import festolandiakids.composeapp.generated.resources.Res
 import festolandiakids.composeapp.generated.resources.festolandiakids_background
 import festolandiakids.composeapp.generated.resources.sun_animation
 import festolandiakids.composeapp.generated.resources.vag_rundschrift_d
-import io.github.alexzhirkevich.compottie.LottieAnimation
-import io.github.alexzhirkevich.compottie.LottieCompositionSpec
-import io.github.alexzhirkevich.compottie.LottieConstants
 import kottieComposition.KottieCompositionSpec
 import kottieComposition.animateKottieCompositionAsState
 import kottieComposition.rememberKottieComposition

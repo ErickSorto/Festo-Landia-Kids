@@ -1,19 +1,55 @@
 package mainScreen
 
-import androidx.annotation.RequiresApi
+import LocalAppColors
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.List
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material3.Button
+import androidx.compose.material3.Card
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import festolandiakids.composeapp.generated.resources.Res
+import festolandiakids.composeapp.generated.resources.compose_multiplatform
+import festolandiakids.composeapp.generated.resources.festolandiakids_background
+import festolandiakids.composeapp.generated.resources.vag_rundschrift_d
+import onboarding.presentation.components.FestoLandiaKidsLogo
+import org.jetbrains.compose.resources.Font
+import org.jetbrains.compose.resources.painterResource
 
 
 @Composable
@@ -23,30 +59,463 @@ fun MainScreenView(
     onNavigateToOnboardingScreen: () -> Unit = {},
     onDataLoaded: () -> Unit
 ) {
-    Scaffold {
+    val scrollState = rememberScrollState()
+    val colors = LocalAppColors.current
+
+    Scaffold(
+        containerColor = Color.Transparent,
+        bottomBar = {
+            NavigationBar {
+                NavigationBarItem(
+                    icon = { Icon(Icons.Default.Home, contentDescription = "Home") },
+                    label = { Text("Home") },
+                    selected = false,
+                    onClick = { /* Handle navigation */ }
+                )
+                NavigationBarItem(
+                    icon = { Icon(Icons.Default.Favorite, contentDescription = "Gallery") },
+                    label = { Text("Gallery") },
+                    selected = false,
+                    onClick = { /* Handle navigation */ }
+                )
+                NavigationBarItem(
+                    icon = { Icon(Icons.AutoMirrored.Filled.List, contentDescription = "Categories") },
+                    label = { Text("Categories") },
+                    selected = false,
+                    onClick = { /* Handle navigation */ }
+                )
+                NavigationBarItem(
+                    icon = { Icon(Icons.Default.Phone, contentDescription = "Contact") },
+                    label = { Text("Contact") },
+                    selected = false,
+                    onClick = { /* Handle navigation */ }
+                )
+            }
+        },
+        floatingActionButton = {
+            FloatingActionButton(onClick = { /* Handle create party */ }) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(
+                        Icons.Default.Add,
+                        contentDescription = "Create Party",
+                        modifier = Modifier.padding(start = 8.dp)
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(text = "Create Party", modifier = Modifier.padding(end = 12.dp))
+                }
+            }
+        }
+    ) {
         Box(
-            modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.Transparent)
         ) {
+            // Background image with parallax effect
+            Image(
+                painter = painterResource(Res.drawable.festolandiakids_background),
+                contentDescription = "Background",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .graphicsLayer {
+                        translationY = -0.4f * scrollState.value // Moves up very slowly
+                    }
+            )
+
+            FestoLandiaKidsLogo(
+                modifier = Modifier
+                    .padding(it.calculateTopPadding())
+                    .padding(top = 16.dp)
+                    .align(Alignment.TopStart)
+                    .graphicsLayer {
+                        translationY = -0.1f * scrollState.value // Moves up faster
+                    },
+                fontSize = 80.sp
+            )
+
+            // Foreground content
             Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .verticalScroll(scrollState),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text(
-                    text = mainScreenViewModelState.title,
-                    style = MaterialTheme.typography.labelLarge
-                )
-                Spacer(modifier = Modifier.height(16.dp))
-                Text(
-                    text = mainScreenViewModelState.description,
-                    style = MaterialTheme.typography.bodyMedium
-                )
-                Spacer(modifier = Modifier.height(16.dp))
-                Button(
-                    onClick = {
-                        onNavigateToOnboardingScreen()
-                    }
+                Spacer(modifier = Modifier.height(280.dp)) // Adjust height as needed
+
+                // Main content box with curved top corners and parallax effect
+                Box(
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(topStart = 32.dp, topEnd = 32.dp))
+                        .background(
+                            color = colors.darkPastelMagenta,
+                            shape = RoundedCornerShape(topStart = 32.dp, topEnd = 32.dp)
+                        )
+                        .fillMaxWidth()
                 ) {
-                    Text(text = "Navigate to Onboarding Screen")
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(
+                                color = Color.Transparent,
+                                shape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp)
+                            )
+                    ) {
+                        Spacer(modifier = Modifier.height(16.dp))
+                        Box(
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(16.dp))
+                                .fillMaxWidth()
+                                .padding(16.dp, 8.dp, 16.dp, 16.dp)
+                                .shadow(
+                                    elevation = 2.dp,
+                                    shape = RoundedCornerShape(16.dp)
+                                )
+                                .background(
+                                    color = colors.lightSkyBlue,
+                                    shape = RoundedCornerShape(16.dp),
+                                )
+                        ) {
+                            Text(
+                                text = "Featured Parties",
+                                style = MaterialTheme.typography.headlineMedium,
+                                modifier = Modifier.padding(
+                                    8.dp
+                                ).align(Alignment.Center),
+                                color = Color.White,
+                                fontFamily = FontFamily(Font(Res.font.vag_rundschrift_d))
+                            )
+                        }
+
+                        Row(
+                            horizontalArrangement = Arrangement.spacedBy(16.dp),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .horizontalScroll(rememberScrollState()),
+                        ) {
+                            // Add cards for featured parties
+                            Spacer(modifier = Modifier.width(0.dp))
+                            repeat(3) {
+                                Card(
+                                    modifier = Modifier
+                                        .width(325.dp)
+                                ) {
+                                    Column(
+                                        horizontalAlignment = Alignment.CenterHorizontally
+                                    ) {
+                                        Image(
+                                            painter = painterResource(Res.drawable.festolandiakids_background), // Replace with actual image resource
+                                            contentDescription = "Featured Party",
+                                            modifier = Modifier
+                                                .height(150.dp)
+                                                .fillMaxWidth()
+                                        )
+                                        Text(
+                                            text = "Party ${it + 1}",
+                                            style = MaterialTheme.typography.bodyLarge,
+                                            modifier = Modifier.padding(8.dp)
+                                        )
+                                        Text(
+                                            text = "A brief description of the party.",
+                                            style = MaterialTheme.typography.bodyMedium,
+                                            modifier = Modifier.padding(horizontal = 8.dp)
+                                        )
+                                        Button(
+                                            onClick = { /* Handle learn more */ },
+                                            modifier = Modifier.padding(8.dp)
+                                        ) {
+                                            Text(text = "Learn More")
+                                        }
+                                    }
+                                }
+                            }
+                            Spacer(modifier = Modifier.width(0.dp))
+                        }
+
+                        // Gallery Section
+                        Box(
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(16.dp))
+                                .fillMaxWidth()
+                                .padding(16.dp, 48.dp, 16.dp, 16.dp)
+                                .shadow(
+                                    elevation = 2.dp,
+                                    shape = RoundedCornerShape(16.dp)
+                                )
+                                .background(
+                                    color = colors.lightSkyBlue,
+                                    shape = RoundedCornerShape(16.dp),
+                                )
+                        ) {
+                            Text(
+                                text = "Gallery",
+                                style = MaterialTheme.typography.headlineMedium,
+                                modifier = Modifier.padding(
+                                    8.dp
+                                ).align(Alignment.Center),
+                                color = Color.White,
+                                fontFamily = FontFamily(Font(Res.font.vag_rundschrift_d)),
+                            )
+                        }
+                        Row(
+                            horizontalArrangement = Arrangement.spacedBy(16.dp),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .horizontalScroll(rememberScrollState())
+                        ) {
+                            Spacer(modifier = Modifier.width(0.dp))
+                            // Add cards for gallery images
+                            repeat(3) {
+                                Card(
+                                    modifier = Modifier
+                                        .width(325.dp)
+                                ) {
+                                    Column(
+                                        horizontalAlignment = Alignment.CenterHorizontally
+                                    ) {
+                                        Image(
+                                            painter = painterResource(Res.drawable.compose_multiplatform), // Replace with actual image resource
+                                            contentDescription = "Gallery Image",
+                                            modifier = Modifier
+                                                .height(150.dp)
+                                                .fillMaxWidth()
+                                        )
+                                        Text(
+                                            text = "Gallery Image ${it + 1}",
+                                            style = MaterialTheme.typography.bodyLarge,
+                                            modifier = Modifier.padding(8.dp)
+                                        )
+                                    }
+                                }
+                            }
+                            Spacer(modifier = Modifier.width(0.dp))
+                        }
+
+                        // Party Packages Section
+                        Box(
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(16.dp))
+                                .fillMaxWidth()
+                                .padding(16.dp, 48.dp, 16.dp, 16.dp)
+                                .shadow(
+                                    elevation = 2.dp,
+                                    shape = RoundedCornerShape(16.dp)
+                                )
+                                .background(
+                                    color = colors.lightSkyBlue,
+                                    shape = RoundedCornerShape(16.dp),
+                                )
+                        ) {
+                            Text(
+                                text = "Party Packages",
+                                style = MaterialTheme.typography.headlineMedium,
+                                modifier = Modifier.padding(
+                                    8.dp
+                                ).align(Alignment.Center),
+                                color = Color.White,
+                                fontFamily = FontFamily(Font(Res.font.vag_rundschrift_d)),
+                            )
+                        }
+                        Row(
+                            horizontalArrangement = Arrangement.spacedBy(16.dp),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .horizontalScroll(rememberScrollState())
+                        ) {
+                            // Add cards for party packages
+                            repeat(3) {
+                                Spacer(modifier = Modifier.width(0.dp))
+                                Card(
+                                    modifier = Modifier
+                                        .width(300.dp)
+                                ) {
+                                    Column(
+                                        horizontalAlignment = Alignment.CenterHorizontally
+                                    ) {
+                                        Image(
+                                            painter = painterResource(Res.drawable.festolandiakids_background), // Replace with actual image resource
+                                            contentDescription = "Party Package",
+                                            modifier = Modifier
+                                                .height(150.dp)
+                                                .fillMaxWidth()
+                                        )
+                                        Text(
+                                            text = "Tier ${it + 1} Package",
+                                            style = MaterialTheme.typography.bodyLarge,
+                                            modifier = Modifier.padding(8.dp)
+                                        )
+                                        Text(
+                                            text = "Description of Tier ${it + 1} Package.",
+                                            style = MaterialTheme.typography.bodyMedium,
+                                            modifier = Modifier.padding(horizontal = 8.dp)
+                                        )
+                                        Button(
+                                            onClick = { /* Handle book now */ },
+                                            modifier = Modifier.padding(8.dp)
+                                        ) {
+                                            Text(text = "Book Now")
+                                        }
+                                    }
+                                }
+                                Spacer(modifier = Modifier.width(0.dp))
+                            }
+                        }
+
+                        // Testimonials Section
+                        Box(
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(16.dp))
+                                .fillMaxWidth()
+                                .padding(16.dp, 48.dp, 16.dp, 16.dp)
+                                .shadow(
+                                    elevation = 2.dp,
+                                    shape = RoundedCornerShape(16.dp)
+                                )
+                                .background(
+                                    color = colors.lightSkyBlue,
+                                    shape = RoundedCornerShape(16.dp),
+                                )
+                        ) {
+                            Text(
+                                text = "Testimonials",
+                                style = MaterialTheme.typography.headlineMedium,
+                                modifier = Modifier.padding(
+                                    8.dp
+                                ).align(Alignment.Center),
+                                color = Color.White,
+                                fontFamily = FontFamily(Font(Res.font.vag_rundschrift_d)),
+                            )
+                        }
+                        Row(
+                            horizontalArrangement = Arrangement.spacedBy(16.dp),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .horizontalScroll(rememberScrollState())
+                        ) {
+                            // Add cards for testimonials
+                            repeat(3) {
+                                Spacer(modifier = Modifier.width(0.dp))
+                                Card(
+                                    modifier = Modifier
+                                        .width(300.dp)
+                                ) {
+                                    Column(
+                                        horizontalAlignment = Alignment.CenterHorizontally
+                                    ) {
+                                        Text(
+                                            text = "Testimonial ${it + 1}",
+                                            style = MaterialTheme.typography.bodyLarge,
+                                            modifier = Modifier.padding(8.dp)
+                                        )
+                                        Text(
+                                            text = "A brief testimonial from a satisfied customer.",
+                                            style = MaterialTheme.typography.bodyMedium,
+                                            modifier = Modifier.padding(horizontal = 8.dp)
+                                        )
+                                    }
+                                }
+                                Spacer(modifier = Modifier.width(0.dp))
+                            }
+                        }
+
+                        // Contact Section
+                        Box(
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(16.dp))
+                                .fillMaxWidth()
+                                .padding(16.dp, 48.dp, 16.dp, 0.dp)
+                                .shadow(
+                                    elevation = 2.dp,
+                                    shape = RoundedCornerShape(16.dp)
+                                )
+                                .background(
+                                    color = colors.lightSkyBlue,
+                                    shape = RoundedCornerShape(16.dp),
+                                )
+                        ) {
+                            Text(
+                                text = "Contact",
+                                style = MaterialTheme.typography.headlineMedium,
+                                modifier = Modifier.padding(
+                                    8.dp
+                                ).align(Alignment.Center),
+                                color = Color.White,
+                                fontFamily = FontFamily(Font(Res.font.vag_rundschrift_d)),
+                            )
+                        }
+                        Card(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(16.dp, 16.dp, 16.dp, 0.dp)
+                        ) {
+                            Column(
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                modifier = Modifier.padding(16.dp)
+                            ) {
+                                Text(
+                                    text = mainScreenViewModelState.title,
+                                    style = MaterialTheme.typography.labelLarge
+                                )
+                                Spacer(modifier = Modifier.height(16.dp))
+                                Text(
+                                    text = mainScreenViewModelState.description,
+                                    style = MaterialTheme.typography.bodyMedium
+                                )
+                                Spacer(modifier = Modifier.height(16.dp))
+                                Button(
+                                    onClick = {
+                                        onNavigateToOnboardingScreen()
+                                    }
+                                ) {
+                                    Text(text = "Navigate to Onboarding Screen")
+                                }
+                            }
+                        }
+
+                        // Map Section
+                        Box(
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(16.dp))
+                                .fillMaxWidth()
+                                .padding(16.dp, 48.dp, 16.dp, 16.dp)
+                                .shadow(
+                                    elevation = 2.dp,
+                                    shape = RoundedCornerShape(16.dp)
+                                )
+                                .background(
+                                    color = colors.lightSkyBlue,
+                                    shape = RoundedCornerShape(16.dp),
+                                )
+                        ) {
+                            Text(
+                                text = "Map",
+                                style = MaterialTheme.typography.headlineMedium,
+                                modifier = Modifier.padding(
+                                    8.dp
+                                ).align(Alignment.Center),
+                                color = Color.White,
+                                fontFamily = FontFamily(Font(Res.font.vag_rundschrift_d)),
+                            )
+                        }
+                        Card(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(16.dp, 0.dp, 16.dp, 16.dp)
+                        ) {
+                            // Add interactive map here
+                            Text(
+                                text = "Map Section",
+                                modifier = Modifier.padding(16.dp)
+                            )
+                        }
+
+                        Spacer(
+                            modifier = Modifier.height(it.calculateBottomPadding())
+                        )
+                    }
                 }
             }
         }
