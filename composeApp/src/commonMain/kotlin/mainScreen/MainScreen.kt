@@ -1,6 +1,12 @@
 package mainScreen
 
 import LocalAppColors
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
@@ -33,6 +39,7 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -61,6 +68,33 @@ fun MainScreenView(
 ) {
     val scrollState = rememberScrollState()
     val colors = LocalAppColors.current
+// Create an infinite transition for the breathing and floating effect
+    val infiniteTransition = rememberInfiniteTransition()
+    // Create an infinite transition for the breathing and floating effect
+    val scale by infiniteTransition.animateFloat(
+        initialValue = 1f,
+        targetValue = 1.05f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(durationMillis = 10000, easing = LinearEasing),
+            repeatMode = RepeatMode.Reverse
+        )
+    )
+    val floatTranslationY by infiniteTransition.animateFloat(
+        initialValue = 0f,
+        targetValue = 10f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(durationMillis = 9000, easing = LinearEasing),
+            repeatMode = RepeatMode.Reverse
+        )
+    )
+    val floatTranslationX by infiniteTransition.animateFloat(
+        initialValue = 0f,
+        targetValue = 5f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(durationMillis = 11000, easing = LinearEasing),
+            repeatMode = RepeatMode.Reverse
+        )
+    )
 
     Scaffold(
         containerColor = Color.Transparent,
@@ -113,37 +147,36 @@ fun MainScreenView(
                 .fillMaxSize()
                 .background(Color.Transparent)
         ) {
-            // Background image with parallax effect
             Image(
                 painter = painterResource(Res.drawable.festolandiakids_background),
                 contentDescription = "Background",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
-                    .fillMaxSize()
+                    .fillMaxSize(1.1f)
                     .graphicsLayer {
-                        translationY = -0.4f * scrollState.value // Moves up very slowly
+                        translationY = floatTranslationY - 0.4f * scrollState.value // Moves up very slowly with parallax
+                        translationX = floatTranslationX
+                        scaleX = scale
+                        scaleY = scale
                     }
             )
 
-            FestoLandiaKidsLogo(
-                modifier = Modifier
-                    .padding(it.calculateTopPadding())
-                    .padding(top = 16.dp)
-                    .align(Alignment.TopStart)
-                    .graphicsLayer {
-                        translationY = -0.1f * scrollState.value // Moves up faster
-                    },
-                fontSize = 80.sp
-            )
-
-            // Foreground content
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
                     .verticalScroll(scrollState),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Spacer(modifier = Modifier.height(280.dp)) // Adjust height as needed
+                FestoLandiaKidsLogo(
+                    modifier = Modifier
+                        .padding(top = it.calculateTopPadding(), start = 16.dp, end = 16.dp)
+                        .padding(top = 16.dp)
+                        .align(Alignment.Start)
+                        .graphicsLayer {
+                            translationY = 0.8f * scrollState.value // Moves up faster
+                        },
+                    fontSize = 80.sp
+                )
 
                 // Main content box with curved top corners and parallax effect
                 Box(
