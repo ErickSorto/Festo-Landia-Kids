@@ -2,6 +2,7 @@ package onboarding.presentation
 
 import KottieAnimation
 import LocalAppColors
+import SunAnimationView
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
@@ -135,29 +136,8 @@ private const val lottieData = """
 @OptIn(ExperimentalResourceApi::class)
 @Composable
 fun KottieAnimationView(modifier: Modifier = Modifier) {
-    var animation by remember { mutableStateOf("") }
 
-    animation = stringResource(Res.string.sun_animation)
-
-
-    val composition = rememberKottieComposition(
-       spec = KottieCompositionSpec.JsonString(jsonString = animation)
-    )
-
-    val animationState by animateKottieCompositionAsState(
-        composition = composition,
-        iterations = KottieConstants.IterateForever,
-        isPlaying = true
-    )
-
-    Box(
-        contentAlignment = Alignment.Center,
-        modifier = modifier.size(1000.dp) // Adjust the size as needed
-    ) {
-        KottieAnimation(
-            composition = composition,
-            progress = { animationState.progress },
-            modifier = Modifier.fillMaxSize()
+        SunAnimationView(
+            modifier = modifier
         )
-    }
 }
