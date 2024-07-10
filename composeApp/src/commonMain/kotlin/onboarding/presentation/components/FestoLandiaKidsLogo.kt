@@ -38,9 +38,6 @@ fun FestoLandiaKidsLogo(
     // Calculate dynamic offsets
     val yOffsetFest = with(density) { (fontSize.value / 10).sp.toDp() }
     val yOffsetKids = with(density) { -(fontSize.value / 10).sp.toDp() }
-    val xOffsetSun = with(density) { (fontSize.value * 1.17).sp.toDp() }
-    val yOffsetSun = with(density) { -(fontSize.value * 0.38).sp.toDp() }
-    val sunSize = with(density) { (fontSize.value * 2.43).sp.toDp() }
 
     Box(
         modifier = modifier
@@ -95,13 +92,9 @@ fun FestoLandiaKidsLogo(
                 letterSpacing = 0.5.sp
             )
         }
-        Box(
-            modifier = Modifier
-                .absoluteOffset(x = xOffsetSun, y = yOffsetSun)
-                .size(sunSize)
-        ) {
-            KottieAnimationView(modifier = Modifier.fillMaxSize())
-        }
+
+        KottieAnimationView(modifier = Modifier.fillMaxSize(), fontSize = fontSize)
+
     }
 }
 

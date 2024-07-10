@@ -11,12 +11,13 @@ androidx-espresso-core = "3.6.1"
 androidx-material = "1.12.0"
 androidx-test-junit = "1.2.1"
 compose = "1.6.8"
-compose-multiplatform = "1.6.10"
+compose-multiplatform = "1.6.11"
 junit = "4.13.2"
 kotlin = "2.0.0"
 kottie = "1.8.6"
+mapsCompose = "6.0.0"
 sql-delight = "1.5.5"
-kotlinx-date-time = "0.5.0"
+kotlinx-date-time = "0.6.0"
 
 
 lifecycleViewModel = "2.8.3"
@@ -45,6 +46,7 @@ compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = 
 compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
 
 kottie = { module = "io.github.ismai117:kottie", version.ref = "kottie" }
+maps-compose = { module = "com.google.maps.android:maps-compose", version.ref = "mapsCompose" }
 sqldelight-native-driver = { module = "com.squareup.sqldelight:native-driver", version.ref = "sql-delight" }
 sqldelight-android-driver = { module = "com.squareup.sqldelight:android-driver", version.ref = "sql-delight" }
 sqldelight-runtime = { module = "com.squareup.sqldelight:runtime", version.ref = "sql-delight" }
