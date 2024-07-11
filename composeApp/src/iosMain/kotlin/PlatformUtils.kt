@@ -9,9 +9,6 @@ import androidx.compose.ui.unit.TextUnit
 import festolandiakids.composeapp.generated.resources.FestoSunLogo
 import festolandiakids.composeapp.generated.resources.Res
 import org.jetbrains.compose.resources.painterResource
-import kotlinx.cinterop.ObjCAction
-import platform.CoreLocation.CLLocationCoordinate2DMake
-import platform.MapKit.*
 
 @Composable
 actual fun setTranslucentBars(darkTheme: Boolean) {
