@@ -18,22 +18,20 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.unit.TextUnit
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.view.ViewCompat
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.libraries.maps.model.LatLng
 import com.google.maps.android.compose.GoogleMap
 import com.google.maps.android.compose.Marker
 import com.google.maps.android.compose.MarkerState
 import com.google.maps.android.compose.rememberCameraPositionState
 import festolandiakids.composeapp.generated.resources.Res
 import festolandiakids.composeapp.generated.resources.sun_animation
-import org.jetbrains.compose.resources.stringResource
 import kottieComposition.KottieCompositionSpec
 import kottieComposition.animateKottieCompositionAsState
 import kottieComposition.rememberKottieComposition
+import org.jetbrains.compose.resources.stringResource
 import utils.KottieConstants
 
 @Composable

@@ -43,17 +43,6 @@ fun MainGraph(
             val mainScreenViewModel = koinViewModel<MainScreenViewModel>()
             val mainScreenViewModelState = mainScreenViewModel.mainScreenViewModelState.collectAsState()
             MainScreenView(
-                mainScreenViewModelState = mainScreenViewModelState.value,
-                onNavigateToOnboardingScreen = {
-                    navController.popBackStack()
-                    navController.navigate(Screens.OnboardingScreen.name)
-                },
-                onMainEvent = {
-                    mainScreenViewModel.onEvent(it)
-                },
-                onDataLoaded = {
-                    onDataLoaded()
-                }
             )
         }
     }

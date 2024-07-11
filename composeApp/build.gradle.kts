@@ -37,7 +37,6 @@ kotlin {
             implementation(libs.koin.androidx.compose)
             implementation(libs.ktor.client.okhttp)
             implementation(libs.kotlinx.coroutines.android)
-            implementation(libs.maps.compose)
         }
 
         commonMain.dependencies {
@@ -60,6 +59,8 @@ kotlin {
             implementation(libs.ktor.client.core)
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.kottie)
+            implementation(libs.maps.compose)
+            implementation(libs.play.services.maps)
         }
 
         iosMain.dependencies {
