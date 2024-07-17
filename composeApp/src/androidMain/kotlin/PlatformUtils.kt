@@ -99,23 +99,3 @@ actual fun SunAnimationView(
         )
     }
 }
-
-@Composable
-actual fun MapView(modifier: Modifier) {
-    val singapore = LatLng(1.35, 103.87)
-    val cameraPositionState = rememberCameraPositionState {
-        position = CameraPosition.fromLatLngZoom(singapore, 10f)
-    }
-    val markerState = remember { MarkerState(position = singapore) }
-
-    GoogleMap(
-        modifier = modifier,
-        cameraPositionState = cameraPositionState
-    ) {
-        Marker(
-            state = markerState,
-            title = "Singapore",
-            snippet = "Marker in Singapore"
-        )
-    }
-}

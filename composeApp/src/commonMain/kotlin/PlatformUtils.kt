@@ -7,6 +7,3 @@ expect fun setTranslucentBars(darkTheme: Boolean)
 
 @Composable
 expect fun SunAnimationView(modifier: Modifier = Modifier, fontSize: TextUnit)
-
-@Composable
-expect fun MapView(modifier: Modifier)
