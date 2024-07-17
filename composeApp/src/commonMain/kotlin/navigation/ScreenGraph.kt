@@ -7,8 +7,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import partyHomeScreen.PartyHomeScreen
 import partyHomeScreen.PartyHomeScreenViewModel
-import partyPlanningScreen.PartyPlanScreen
-import partyPlanningScreen.PartyPlanScreenViewModel
 
 @Composable
 fun ScreenGraph(
@@ -26,18 +24,6 @@ fun ScreenGraph(
                 partyHomeScreenViewModelState = partyHomeScreenViewModelState.value,
                 onEvent = {
                     partyHomeScreenViewModel.onEvent(it)
-                },
-            )
-        }
-
-        composable(route = Screens.PartyPlanScreen.name) {
-            val partyPlanScreenViewModel = koinViewModel<PartyPlanScreenViewModel>()
-            val partyPlanningScreenViewModelState = partyPlanScreenViewModel.partyPlanScreenViewModelState.collectAsState()
-
-            PartyPlanScreen(
-                partyPlanningScreenViewModelState = partyPlanningScreenViewModelState.value,
-                onEvent = {
-                    partyPlanScreenViewModel.onEvent(it)
                 },
             )
         }

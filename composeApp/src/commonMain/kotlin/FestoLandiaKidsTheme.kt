@@ -23,6 +23,9 @@ object CustomColors {
     val LightYellow = Color(0xFFFFCC00)
     val DarkYellow = Color(0xFFB8860B)
     val LightSkyBlue = Color(0xFF87CEEB)
+    val LightSkyBlue2 = Color(0xFF70B5D9)  // Slightly darker than LightSkyBlue
+    val SkyBlue = Color(0xFF6AADE0)
+    val DeepSkyBlue = Color(0xFF008ACF)
     val LightMagenta = Color(0xFFFF66FF)
     val DarkPastelMagenta = Color(0xFFD982B5)
     val LightPastelMagenta = Color(0xFFE6A8C1)
@@ -35,6 +38,8 @@ data class AppColors(
     val lightMagenta: Color,
     val darkPastelMagenta: Color,
     val lightPastelMagenta: Color,
+    val skyBlue: Color = CustomColors.SkyBlue,
+    val deepSkyBlue: Color = CustomColors.DeepSkyBlue
 )
 
 val LocalAppColors = staticCompositionLocalOf {
@@ -46,6 +51,8 @@ val LocalAppColors = staticCompositionLocalOf {
         lightMagenta = CustomColors.LightMagenta,
         darkPastelMagenta = CustomColors.DarkPastelMagenta,
         lightPastelMagenta = CustomColors.LightPastelMagenta,
+        skyBlue = CustomColors.SkyBlue,
+        deepSkyBlue = CustomColors.DeepSkyBlue
     )
 }
 

@@ -37,6 +37,7 @@ import navigation.Screens
 
 @Composable
 fun MainScreenView(
+    onNavigateTo: (Screens) -> Unit
 ) {
     val navController = rememberNavController()
     Scaffold(
@@ -71,7 +72,7 @@ fun MainScreenView(
         },
         floatingActionButton = {
             FloatingActionButton(onClick = {
-                navController.navigate(Screens.PartyPlanScreen.name)
+                onNavigateTo(Screens.PartyPlanScreen)
             }) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically
@@ -91,6 +92,7 @@ fun MainScreenView(
             navController = navController,
         )
     }
+
 }
 
 @Composable

@@ -1,5 +1,11 @@
 package navigation
 
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.lifecycle.ViewModel
@@ -12,6 +18,8 @@ import mainScreen.MainScreenViewModel
 import onboarding.presentation.OnboardingScreen
 import onboarding.presentation.OnboardingViewModel
 import org.koin.compose.currentKoinScope
+import partyPlanningScreen.PartyPlanScreen
+import partyPlanningScreen.PartyPlanScreenViewModel
 
 
 @Composable
@@ -22,6 +30,34 @@ fun MainGraph(
     NavHost(
         navController = navController,
         startDestination = Screens.OnboardingScreen.name,
+        enterTransition = {
+            when (targetState.destination.route) {
+                Screens.PartyPlanScreen.name -> slideInVertically(
+                    initialOffsetY = { fullHeight -> fullHeight },
+                    animationSpec = tween(durationMillis = 600, easing = FastOutSlowInEasing)
+                )
+                else -> fadeIn(animationSpec = tween(700))
+            }
+        },
+        exitTransition = {
+            when (targetState.destination.route) {
+                //do nothing when navigating to plan screen
+                Screens.PartyPlanScreen.name -> fadeOut(animationSpec = tween(10000))
+                else -> fadeOut(animationSpec = tween(700))
+            }
+        },
+        popExitTransition = {
+            when (targetState.destination.route) {
+                Screens.PartyPlanScreen.name -> slideOutVertically(
+                    targetOffsetY = { fullHeight -> fullHeight },
+                    animationSpec = tween(durationMillis = 600, easing = FastOutSlowInEasing)
+                )
+                else -> slideOutVertically(
+                    targetOffsetY = { fullHeight -> fullHeight },
+                    animationSpec = tween(durationMillis = 600, easing = FastOutSlowInEasing)
+                )
+            }
+        }
     ) {
         //welcome
         composable(route = Screens.OnboardingScreen.name) {
@@ -43,6 +79,24 @@ fun MainGraph(
             val mainScreenViewModel = koinViewModel<MainScreenViewModel>()
             val mainScreenViewModelState = mainScreenViewModel.mainScreenViewModelState.collectAsState()
             MainScreenView(
+               onNavigateTo = {
+                   navController.navigate(it.name)
+               }
+            )
+        }
+
+        composable(route = Screens.PartyPlanScreen.name) {
+            val partyPlanScreenViewModel = koinViewModel<PartyPlanScreenViewModel>()
+            val partyPlanningScreenViewModelState = partyPlanScreenViewModel.partyPlanScreenViewModelState.collectAsState()
+
+            PartyPlanScreen(
+                partyPlanningScreenViewModelState = partyPlanningScreenViewModelState.value,
+                onNavigateUp = {
+                    navController.navigateUp()
+                },
+                onEvent = {
+                    partyPlanScreenViewModel.onEvent(it)
+                },
             )
         }
     }

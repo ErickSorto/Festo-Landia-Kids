@@ -515,7 +515,7 @@ fun PartyHomeScreen(
                         }
 
                         Spacer(
-                            modifier = androidx.compose.ui.Modifier.height(it.calculateBottomPadding())
+                            modifier = Modifier.height(it.calculateBottomPadding())
                         )
                     }
                 }
