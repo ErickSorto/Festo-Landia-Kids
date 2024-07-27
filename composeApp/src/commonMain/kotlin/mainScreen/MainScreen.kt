@@ -18,6 +18,7 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -57,7 +58,12 @@ fun MainScreenView(
                     onClick = { /* Handle navigation */ }
                 )
                 NavigationBarItem(
-                    icon = { Icon(Icons.AutoMirrored.Filled.List, contentDescription = "Categories") },
+                    icon = {
+                        Icon(
+                            Icons.AutoMirrored.Filled.List,
+                            contentDescription = "Categories"
+                        )
+                    },
                     label = { Text("Categories") },
                     selected = false,
                     onClick = { /* Handle navigation */ }
@@ -71,21 +77,17 @@ fun MainScreenView(
             }
         },
         floatingActionButton = {
-            FloatingActionButton(onClick = {
-                onNavigateTo(Screens.PartyPlanScreen)
-            }) {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Icon(
-                        Icons.Default.Add,
-                        contentDescription = "Create Party",
-                        modifier = Modifier.padding(start = 8.dp)
-                    )
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text(text = "Create Party", modifier = Modifier.padding(end = 12.dp))
+            ExtendedFloatingActionButton(
+                onClick = {
+                    onNavigateTo(Screens.PartyPlanScreen)
+                },
+                text = {
+                    Text("Create Party")
+                },
+                icon = {
+                    Icon(Icons.Default.Add, contentDescription = "Create Party")
                 }
-            }
+            )
         }
     ) {
         ScreenGraph(

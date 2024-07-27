@@ -7,21 +7,28 @@ enum class OnboardingPage(
     val pageNumber: Int
 ) {
     WELCOME(
-        title = "Welcome to Collatz Conjecture Visualizer",
+        title = "Welcome to Festo Landia Kids",
         vectorIcon = "welcome",
-        description = "Collatz Conjecture Visualizer is a tool that allows you to visualize the Collatz Conjecture in a fun and interactive way.",
+        description = "Festo Landia Kids is happy to make your child's birthday party a " +
+                "memorable one. Create your party, explore options, and plan your event.",
         pageNumber = 0
     ),
-    CALCULATOR(
-        title = "Calculator",
+    CREATE_PARTY(
+        title = "Create your party",
         vectorIcon = "calculator",
-        description = "Use the calculator to generate a Collatz sequence for any number.",
+        description = "Make your child's dream party a reality with the help of artificial intelligence.",
         pageNumber = 1
     ),
-    VISUALIZER(
-        title = "Visualizer",
+    EXPLORE_OPTIONS(
+        title = "Explore your options",
         vectorIcon = "visualizer",
-        description = "Visualize the Collatz Conjecture in a 3D environment.",
+        description = "Explore different themes, packages, and options to make your child's party unique and affordable.",
         pageNumber = 2
+    ),
+    PLAN_EVENT(
+        title = "Plan your event",
+        vectorIcon = "calendar",
+        description = "Plan your event, create a guest list, and send out invitations to make your child's party a success.",
+        pageNumber = 3
     )
 }

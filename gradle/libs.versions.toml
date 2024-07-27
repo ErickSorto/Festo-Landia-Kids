@@ -16,6 +16,7 @@ junit = "4.13.2"
 kotlin = "2.0.0"
 kottie = "1.8.6"
 mapsCompose = "6.0.0"
+openaiClient = "3.8.2"
 playServicesMaps = "19.0.0"
 sql-delight = "1.5.5"
 kotlinx-date-time = "0.6.0"
@@ -48,6 +49,7 @@ compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview"
 
 kottie = { module = "io.github.ismai117:kottie", version.ref = "kottie" }
 maps-compose = { module = "com.google.maps.android:maps-compose", version.ref = "mapsCompose" }
+openai-client = { module = "com.aallam.openai:openai-client", version.ref = "openaiClient" }
 play-services-maps = { module = "com.google.android.gms:play-services-maps", version.ref = "playServicesMaps" }
 sqldelight-native-driver = { module = "com.squareup.sqldelight:native-driver", version.ref = "sql-delight" }
 sqldelight-android-driver = { module = "com.squareup.sqldelight:android-driver", version.ref = "sql-delight" }

@@ -61,6 +61,8 @@ kotlin {
             implementation(libs.kottie)
             implementation(libs.maps.compose)
             implementation(libs.play.services.maps)
+
+            implementation (libs.openai.client)
         }
 
         iosMain.dependencies {

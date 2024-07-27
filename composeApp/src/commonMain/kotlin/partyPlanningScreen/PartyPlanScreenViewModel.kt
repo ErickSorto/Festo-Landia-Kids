@@ -1,8 +1,11 @@
 package partyPlanningScreen
 
 import androidx.lifecycle.ViewModel
+import com.aallam.openai.api.http.Timeout
+import com.aallam.openai.client.OpenAI
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlin.time.Duration.Companion.seconds
 
 class PartyPlanScreenViewModel : ViewModel() {
     private val _partyPlanningScreenViewModelState =
@@ -21,10 +24,6 @@ class PartyPlanScreenViewModel : ViewModel() {
                     )
             }
 
-            is PartyPlanningScreenEvent.CreateNewPartyClicked -> {
-                // Handle event
-            }
-
             is PartyPlanningScreenEvent.TextFieldChanged -> {
                 when (event.field) {
                     TextFieldType.NAME -> _partyPlanningScreenViewModelState.value =
@@ -38,6 +37,9 @@ class PartyPlanScreenViewModel : ViewModel() {
 
                     TextFieldType.DATE -> _partyPlanningScreenViewModelState.value =
                         _partyPlanningScreenViewModelState.value.copy(date = event.text)
+
+                    TextFieldType.CUSTOM_THEME -> _partyPlanningScreenViewModelState.value =
+                        _partyPlanningScreenViewModelState.value.copy(selectedTheme = event.text)
                 }
             }
 
@@ -66,6 +68,17 @@ class PartyPlanScreenViewModel : ViewModel() {
                 _partyPlanningScreenViewModelState.value =
                     _partyPlanningScreenViewModelState.value.copy(selectedPackage = event.packageType)
             }
+
+            is PartyPlanningScreenEvent.CreatePartyClicked -> {
+                val openai = OpenAI(
+                    token = "your-api-key",
+                    timeout = Timeout(socket = 60.seconds),
+                )
+            }
+            is PartyPlanningScreenEvent.ToggleCustomThemeExpanded -> {
+                _partyPlanningScreenViewModelState.value =
+                    _partyPlanningScreenViewModelState.value.copy(isCustomThemeExpanded = event.isExpanded)
+            }
         }
     }
 }
@@ -79,6 +92,8 @@ data class PartyPlanningScreenViewModelState(
     val date: String = "",
     val selectedTheme: String = "",
     val selectedPackage: String = "",
+    val customTheme: String = "",
+    val isCustomThemeExpanded: Boolean = false,
     val isSimplePackageExpanded: Boolean = false,
     val isIntermediatePackageExpanded: Boolean = false,
     val isAdvancedPackageExpanded: Boolean = false,
@@ -86,5 +101,5 @@ data class PartyPlanningScreenViewModelState(
 )
 
 enum class TextFieldType {
-    NAME, NUMBER_OF_PEOPLE, TIER, DATE
+    NAME, NUMBER_OF_PEOPLE, TIER, DATE, CUSTOM_THEME
 }

@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.PagerState
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
@@ -56,6 +58,7 @@ fun OnboardingScreen(
 
     val colors = LocalAppColors.current
 
+
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier.fillMaxSize()
@@ -71,6 +74,23 @@ fun OnboardingScreen(
     Scaffold(
         containerColor = Color.Transparent
     ) {
+//        Column {
+//            HorizontalPager(
+//                pageContent = { pageNumber ->
+//                    OnboardingPage.entries.forEach { entry ->
+//                        if (entry.pageNumber == pageNumber) {
+//                            Box(
+//                                contentAlignment = Alignment.Center,
+//                                modifier = Modifier.fillMaxSize()
+//                            ) {
+//                                Text(text = entry.title)
+//                            }
+//                        }
+//                    }
+//                },
+//                state = pagerState,
+//                modifier = Modifier.padding(it)
+//            )
         Column(
             modifier = Modifier.fillMaxSize().padding(it),
             horizontalAlignment = Alignment.CenterHorizontally
