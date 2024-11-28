@@ -46,6 +46,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -153,7 +154,7 @@ fun PartyPlanScreen(
                             //enabled = !addEditDreamState.isDreamExitOff && !addEditDreamState.dreamIsSavingLoading
                         ) {
                             Icon(
-                                modifier = Modifier.size(12.dp).align(Alignment.Center),
+                                modifier = Modifier.size(12.dp).align(Alignment.Center).padding(2.dp),
                                 painter = painterResource(Res.drawable.exit_icon),
                                 contentDescription = "Back",
                                 tint = Color.White,
@@ -167,7 +168,8 @@ fun PartyPlanScreen(
                     containerColor = Color.Transparent,
                 ),
                 modifier = Modifier
-                    .height(72.dp)
+                    .fillMaxWidth()
+                    .height(88.dp)
             )
         }
     ) { paddingValues ->
