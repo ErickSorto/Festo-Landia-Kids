@@ -13,8 +13,6 @@ class PartyPlanScreenViewModel : ViewModel() {
     val partyPlanScreenViewModelState: StateFlow<PartyPlanningScreenViewModelState> =
         _partyPlanningScreenViewModelState
 
-
-
     fun onEvent(event: PartyPlanningScreenEvent) {
         when (event) {
             is PartyPlanningScreenEvent.ButtonClicked -> {
@@ -23,7 +21,6 @@ class PartyPlanScreenViewModel : ViewModel() {
                         title = "Button Clicked"
                     )
             }
-
             is PartyPlanningScreenEvent.TextFieldChanged -> {
                 when (event.field) {
                     TextFieldType.NAME -> _partyPlanningScreenViewModelState.value =
